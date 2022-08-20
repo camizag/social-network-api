@@ -1,6 +1,6 @@
 const { Comment } = require('./../models');
 
-const seedComments = async () => {
+const seedComment = async () => {
     await Comment.create(
         {_id: '62d9733226bfdf20564153a1', thoughtText: 'Once upon a time...', username: 'user1'},
         {_id: '62d9733226bfdf20564153a2', thoughtText: 'And it was gone with the wind.', username: 'user2', reactions: {reactionBody: 'Nice one!', username: 'user1'}},
