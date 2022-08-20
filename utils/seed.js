@@ -1,6 +1,6 @@
 const connection = require('./../config/connection');
 const seedUsers = require('./userSeed');
-const seedThoughts = require('./thoughtSeed');
+const seedThoughts = require('./commentSeed');
 const { User, Thought } = require('./../models');
 
 const seedData = async () => {
