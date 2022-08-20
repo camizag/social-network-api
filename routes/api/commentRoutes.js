@@ -4,7 +4,7 @@ const { getAllComments, getOneComment, createComment, updateComment, deleteComme
 //api/comments
 router.route('/').get(getAllComments).post(createComment);
 
-//api/comments/:toughtId
+//api/comments/:thoughtId
 router.route('/:commentId').get(getOneComment).put(updateComment).delete(deleteComment);
 
 //api/comments/:thoughtId/reactions
