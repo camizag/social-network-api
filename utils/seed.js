@@ -1,20 +1,25 @@
-const connection = require('./../config/connection');
+const connection = require('../config/connection');
+const { User, Comment } = require('../models')
 const seedUsers = require('./userSeed');
-const seedThoughts = require('./commentSeed');
-const { User, Comment } = require('./../models');
 const seedComment = require('./commentSeed');
 
-const seedData = async () => {
-    await connection();
-    await User.deleteMany();
-    console.log('\n----- USER COLLECTION HAS BEEN WIPED! -----');
-    await Comment.deleteMany();
-    console.log('\n----- THOUGHT COLLECTION HAS BEEN WIPED! -----');
-    await seedUsers();
-    console.log('\n----- USERS SEEDED SUCCESSFULLY! -----');
-    await seedComment();
-    console.log('\n----- THOUGHTS SEEDED SUCCESSFULLY! -----\n');
-    process.exit();
-}
+connection.on('error', (err) => err);
 
-seedData();
+connection.once('open', async () => {
+  console.log('connected');
+  await User.deleteMany({});
+  await Comment.deleteMany({});
+  await Comment.collection.insertOne({
+    thoughtText: 'UCLA',
+    username: "hector",
+    interactions: [],
+  });
+  await User.collection.insertOne({
+    username: "hector",
+    email: "hola@mail.com",
+    comments: [],
+    friends: []
+  });
+  console.info('Seeding complete!');
+  process.exit(0);
+});
